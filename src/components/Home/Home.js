@@ -32,7 +32,11 @@ class Home extends React.Component {
         this.createInvestment = this.createInvestment.bind(this);
     }
     async componentDidMount() {
+        console.log("ENTROOU");
         const token = localStorage.getItem('TOKEN');
+        if (!token){
+            this.props.history.push('/');
+        }
         const options = { headers: { Authorization: 'Bearer '.concat(token) } }
         const url = 'https://invest-wallet-backend.herokuapp.com/investments';
         let result = await axios.get(url, options);

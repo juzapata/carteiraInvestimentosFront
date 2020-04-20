@@ -37,13 +37,14 @@ class SignInAndCreateUser extends React.Component {
     signIn = async (event) => {
         try {
             event.preventDefault()
+            console.log('CHAMOU DE NOVO');
             const user = {
                 email: this.state.email,
                 password: this.state.password
             };
             let result = await axios.post('https://invest-wallet-backend.herokuapp.com/auth/authenticate', user);
             localStorage.setItem('TOKEN', result.data.token);
-            this.props.history.push('/home');
+            this.props.history.push('Home');
         } catch (err){
             console.log('ERRO', err);
             let error = "Senha ou Email Inválido. Tente novamente!";
@@ -61,7 +62,9 @@ class SignInAndCreateUser extends React.Component {
             };
             let result = await axios.post('https://invest-wallet-backend.herokuapp.com/auth/register', user);
             localStorage.setItem('TOKEN', result.data.token);
-            this.props.history.push('/home');
+            console.log('TOKEN', localStorage.getItem('TOKEN'));
+            console.log('VAI DAR O PUSH');
+            this.props.history.push('Home');
         } catch (err){
             console.log('ERRO', err);
             let error = "Senha ou Email Inválido. Tente novamente!";

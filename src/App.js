@@ -6,11 +6,9 @@ function App() {
   return (
     <BrowserRouter>
         <Routes />
-    
-  </BrowserRouter>  
+    </BrowserRouter>  
    
   );
 }
-
 
 export default App;

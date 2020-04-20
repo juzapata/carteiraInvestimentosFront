@@ -1,8 +1,8 @@
 import React from 'react';
-import { Switch} from 'react-router-dom';
+import { Switch, Route} from 'react-router-dom';
 import SignInAndCreateUser from '../components/SignInAndCreate/SignInAndCreateUser';
 import Home from '../components/Home/Home';
-import Route from './Routes';
+
 
 
 export default function Routes() {
@@ -10,8 +10,9 @@ export default function Routes() {
     <Switch>
       <div className="App">
         <div className="App-body">
-          <Route path="/" exact component={SignInAndCreateUser} />
+          <Route path="/" exact component={SignInAndCreateUser} redirectTo="/" />
           <Route path="/home" exact component={Home} isPrivate />
+          
           </div>
       </div>
     </Switch>
