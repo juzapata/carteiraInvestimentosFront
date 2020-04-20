@@ -1,0 +1,20 @@
+.display-flex{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    
+}
+
+.display-flex p {
+    margin-right: 10px;
+    padding-right: 10px;
+    font-size: large;
+}
+
+.icon-trash {
+    max-width: 5%;
+}
+
+.fa-trash {
+    color: rgb(187, 71, 95);
+}
