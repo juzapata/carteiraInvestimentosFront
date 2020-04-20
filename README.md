@@ -2,6 +2,9 @@
 
 Case de simulação de uma carteira de investimentos - front-end
 
+Link da Aplicação: https://carteira-front.herokuapp.com/
+
+
 ### Tech
 
 Tecnologia usada
