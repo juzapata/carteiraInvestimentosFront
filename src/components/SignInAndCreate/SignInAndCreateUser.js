@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import './SignInAndCreateUser.css';
-import Logo from '../../assets/imgs/logo-invest.png';
+import Logo from '../../assets/logo-invest.png';
 
 class SignInAndCreateUser extends React.Component {
     constructor(props) {

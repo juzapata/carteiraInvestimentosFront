@@ -1,12 +1,13 @@
 import React from 'react';
 import './Home.css';
-import Logo from '../../assets/imgs/logo-invest.png';
+import Logo from '../../assets/logo-invest.png';
 import Button from '../fragments/Button/Button';
 import axios from 'axios';
 import Chart from '../fragments/Chart/Chart';
 import Investment from '../fragments/Investments/Investments';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUser } from '@fortawesome/free-solid-svg-icons'
+import { faUser, faSquare } from '@fortawesome/free-solid-svg-icons'
+
 
 class Home extends React.Component {
     constructor(props) {
@@ -32,16 +33,15 @@ class Home extends React.Component {
         this.createInvestment = this.createInvestment.bind(this);
     }
     async componentDidMount() {
-        console.log("ENTROOU");
         const token = localStorage.getItem('TOKEN');
-        if (!token){
+        if (!token) {
             this.props.history.push('/');
         }
         const options = { headers: { Authorization: 'Bearer '.concat(token) } }
         const url = 'https://invest-wallet-backend.herokuapp.com/investments';
         let result = await axios.get(url, options);
-         let variable = result.data.user.variableInvestment.map((el) => {
-             return  parseFloat(el.value);
+        let variable = result.data.user.variableInvestment.map((el) => {
+            return parseFloat(el.value);
         });
         let fixed = result.data.user.fixedInvestment.map((el) => {
             return parseFloat(el.value);
@@ -49,7 +49,7 @@ class Home extends React.Component {
         this.setState({
             data: result.data.user,
             variable: variable.reduce((a, b) => a + b, 0),
-            fix: fixed.reduce((a, b) => a + b ,0)
+            fix: fixed.reduce((a, b) => a + b, 0)
 
         });
     }
@@ -127,8 +127,8 @@ class Home extends React.Component {
         let fixPercent;
         let variablePercent;
         let total = this.state.fix + this.state.variable
-        fixPercent = this.state.fix*100/total
-        variablePercent = this.state.variable*100/total;
+        fixPercent = this.state.fix * 100 / total
+        variablePercent = this.state.variable * 100 / total;
         let variableInvestments = (
             <div>
                 {
@@ -173,7 +173,7 @@ class Home extends React.Component {
                     <nav className="topnav">
                         <img src={Logo} alt="Logo Invest Wallet"></img>
                         <h1>Invest Wallet</h1>
-                        <div className="info-user">  
+                        <div className="info-user">
                             <p><FontAwesomeIcon icon={faUser} /> Olá {this.state.data.name}!</p>
                             <button className="btn-logout" text="" onClick={this.logoutHandler}>Sair</button>
                         </div>
@@ -193,18 +193,26 @@ class Home extends React.Component {
                 <div className="chart-container">
                     <div className="container-text">
                         <h2>Resumo dos Investimentos</h2>
-                        <p>{isNaN(Math.floor(variablePercent)) === false ? Math.floor(variablePercent) : 0}% Invetimento Variável</p>
-                        <p>{isNaN(Math.floor(fixPercent)) === false ? Math.floor(fixPercent) : 0}% Investimento Fixo</p>
+                        <div className="row-display">
+                            <p>{isNaN(Math.floor(fixPercent)) === false ? Math.floor(fixPercent) : 0}% Investimento Fixo</p>
+                            <FontAwesomeIcon icon={faSquare} className="green-pool"/>
+                            
+                        </div>
+                        
+                        <div className="row-display">
+                            <p>{isNaN(Math.floor(variablePercent)) === false ? Math.floor(variablePercent) : 0}% Invetimento Variável</p>
+                            <FontAwesomeIcon icon={faSquare} className="blue-pool" />
+                            
+                        </div>
+                       
                     </div>
-                    
-                    <Chart 
-                    variable={this.state.variable !== 0 ? this.state.variable : 10} 
-                    fix={this.state.fix !== 0 ? this.state.fix : 10} 
-                    valor={this.state.value} 
-                    // mouseOver={v => this.setState({value: this.state.variable})}
-                    // mouseOut={v => this.setState({value: false})}
+
+                    <Chart
+                        variable={this.state.variable !== 0 ? this.state.variable : 10}
+                        fix={this.state.fix !== 0 ? this.state.fix : 10}
+                        valor={this.state.value}
                     />
-                    
+
 
                 </div>
                 <div className="home">

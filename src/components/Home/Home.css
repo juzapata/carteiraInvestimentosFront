@@ -158,3 +158,22 @@ span {
     align-items: baseline;
     margin: 5%;
 }
+
+.row-display{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+
+.blue-pool{
+    color: #79C7E3;
+}
+
+.green-pool{
+    color: #42949A;
+}
+
+.row-display p {
+    padding-right: 10px;
+}
